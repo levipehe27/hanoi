@@ -1,0 +1,82 @@
+import time
+Discos=3
+Tiempo=1
+D=0
+paso=1
+contador=1
+condicion= (2**Discos)-1
+while 4>D :
+
+    print("\n----------TORRES DE HANÓI----------")
+    print("          Menú Principal")
+    print("(1) Elegir cantidad de discos")
+    print("(2) Elegir segundos entre movimientos")
+    print("(3) Iniciar simulación")
+
+    D = int(input())
+
+    if D == 1:
+        Discos = int(input(
+            "Ingrese la cantidad de discos que desea usar.\n La cantidad debe de estar entre el rango [3,10]\n"))
+        if 11 > Discos > 2:
+            D=0
+        else:
+            print("Ingreso un número invalido,sera enviado al menú principal \n ")
+            D=1
+    elif D == 2:
+        Tiempo = int(input(
+            "Ingrese los segundos entre movimientos que desea usar.\n La cantidad debe de estar entre el rango [1,10]\n"))
+        if 11 > Tiempo > 0:
+            D = 0
+        else:
+            print("Ingreso un número invalido,sera enviado al menú principal \n ")
+            D = 1
+    elif D == 3 :
+
+
+        def imprimir_movimiento(salida, destino, paso):
+                print("paso numero :", paso)
+                print('Mover de la torre', salida, ' a la torre', destino, )
+
+
+        paso = paso + 2
+
+
+        def hanoi(n, salida, auxiliar, destino, paso):
+            if n == 1:
+                    imprimir_movimiento(salida, destino, paso)
+                    time.sleep(Tiempo)
+
+            else:
+                    hanoi(n - 1, salida, destino, auxiliar, paso)
+                    paso = paso + 1
+                    hanoi(1, salida, auxiliar, destino, paso)
+                    paso = paso + 1
+                    hanoi(n - 1, auxiliar, salida, destino, paso)
+
+
+        hanoi(Discos, 'A', 'B', 'C', paso)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    else:
+        print("La opcion que desea elegir no está dentro del menú")
+        D=0
+
